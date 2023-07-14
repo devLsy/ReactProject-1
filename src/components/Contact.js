@@ -1,11 +1,13 @@
 import { Component } from "react";
-import Contactinfo from "./Contactinfo";
+import Contactinfo from "./Contactinfo"; 
+import ContactDetails from "./ContactDetails";
 
 export default class Contact extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            selectKey: -1,
             keyword: '',
             contactData: [
                 {name: "광개토대왕", phone: "010-1111-2222"},
@@ -15,6 +17,7 @@ export default class Contact extends Component {
             ]
         }
         this.handleChange = this.handleChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
     
     handleChange(e) {
@@ -23,18 +26,29 @@ export default class Contact extends Component {
         });
     }
 
+    handleClick(key) {
+        this.setState({
+            selectKey: key
+        });
+        
+        console.log(key, "is selected");
+    }
+
     render() {
 
         const mapToComponent = (data) => {
             data.sort();
             data = data.filter(
-                (contact) => {
+                ( contact) => {
                     return contact.name.toLowerCase()
                             .indexOf(this.state.keyword) > -1;
                 } 
             )
             return data.map((contact, i) => {
-                return (<Contactinfo contact = {contact} key={i}/>)                     
+                return (<Contactinfo 
+                             contact = {contact} 
+                             key={i}    
+                             onClick={() => {this.handleClick(i)}}/>)                     
             });
         };
 
@@ -48,6 +62,10 @@ export default class Contact extends Component {
                        onChange={this.handleChange}
                        />
                 {mapToComponent(this.state.contactData)}
+                <ContactDetails 
+                    isSelected = {this.state.selectKey != -1}
+                    contact = {this.state.contactData[this.state.selectKey]}
+                    / > 
             </div>                
         );  
     }
