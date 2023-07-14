@@ -11,6 +11,7 @@ export default class Contact extends Component {
                 {name: "광개토대왕", phone: "010-1111-2222"},
                 {name: "이순신장군", phone: "010-2222-3333"},
                 {name: "세종대왕", phone: "010-3333-4444"},
+                {name: "장영실", phone: "010-4444-5555"}
             ]
         }
         this.handleChange = this.handleChange.bind(this);
