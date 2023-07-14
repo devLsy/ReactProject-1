@@ -1,10 +1,11 @@
+import { Component } from "react";
+import Contact from "./Contact";
 
-function App() {
-  return (
-    <div className="App">
-      {/* <Content/> */}
-    </div>
-  );
+export default class App extends Component {
+  
+  render() {
+    return (
+      <Contact/>
+    );
+  }
 }
-
-export default App;
