@@ -97,7 +97,7 @@ export default class Contact extends Component {
                        />
                 {mapToComponent(this.state.contactData)}
                 <ContactDetails 
-                    isSelected = {this.state.selectKey != -1}
+                    isSelected = {this.state.selectKey !== -1}
                     contact = {this.state.contactData[this.state.selectKey]}
                     / > 
                 <ContactCreate 
