@@ -26,41 +26,20 @@ export default class Contact extends Component {
         this.handleEdit = this.handleEdit.bind(this);
     }
     //컴포넌트가 DOM위에 그려지기 전에 실행
-    // componentWillUnmount() {
-    //     const contactData = localStorage.contactData;
-
-    //     if(contactData) {
-    //         this.setState({
-    //             contactData: JSON.parse(contactData)
-    //         })
-    //     }   
-    // }
     componentWillMount() {
         const contactData = localStorage.contactData;   
-        const nextId = localStorage.nextId;
 
         if(contactData) {
             this.setState({
                 contactData: JSON.parse(contactData),
-                nextId
             })
         }
     }
 
     //컴포넌트의 state가 업데이트 될 때마다 실행
-    // componentDidUpdate(PrevProps, prevState) {
-    //     if(JSON.stringify(prevState.contactData) != JSON.stringify(this.state.contactData)) {
-    //         localStorage.contactData = JSON.stringify(this.state.contactData);            
-    //     }   
-    // }
-
     componentDidUpdate(prevProps, prevState) {
         if(JSON.stringify(prevState.contactData) != JSON.stringify(this.state.contactData)) {
             localStorage.contactData = JSON.stringify(this.state.contactData);
-        }
-
-        if(prevState.nextId !== this.state.nextId){
-            localStorage.nextId = this.state.nextId;
         }
     }
 
