@@ -47,6 +47,9 @@ export default class Contact extends Component {
     }
 
     handleRemove() {
+        if(this.state.selectKey < 0) {
+            return;
+        }
         this.setState({
             contactData: update(this.state.contactData,
                 { $splice: [[this.state.selectKey, 1]] }
@@ -54,7 +57,7 @@ export default class Contact extends Component {
             selectKey: -1                     
         });
     }
-
+    
     handleEdit(name, phone) {
         this.setState({
             contactData: update(this.state.contactData, 
@@ -96,10 +99,13 @@ export default class Contact extends Component {
                        onChange={this.handleChange}
                        />
                 {mapToComponent(this.state.contactData)}
+
                 <ContactDetails 
                     isSelected = {this.state.selectKey !== -1}
                     contact = {this.state.contactData[this.state.selectKey]}
+                    onRemove = {this.handleRemove}
                     / > 
+
                 <ContactCreate 
                     onCreate={this.handleCreate}
                 />
