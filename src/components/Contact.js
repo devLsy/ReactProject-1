@@ -104,6 +104,7 @@ export default class Contact extends Component {
                     isSelected = {this.state.selectKey !== -1}
                     contact = {this.state.contactData[this.state.selectKey]}
                     onRemove = {this.handleRemove}
+                    onEdit = {this.handleEdit}
                     / > 
 
                 <ContactCreate 
